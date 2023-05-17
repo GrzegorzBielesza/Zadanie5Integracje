@@ -1,0 +1,394 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<table>
+	<row>
+		<Marka value="Dell"/>
+		<Rozmiar value="12&quot;"/>
+		<Rozdzielczosc value="1920x1080"/>
+		<Matryca value="matowa"/>
+		<Dotykowy value="nie"/>
+		<Procesor value="intel i7"/>
+		<Liczba_rdzeni value="4"/>
+		<Taktowanie value="2800"/>
+		<Ram value="8GB"/>
+		<Rozmiar_dysku value="240GB"/>
+		<Typ_dysku value="SSD"/>
+		<Karta_graficzna value="intel HD Graphics 4000"/>
+		<Pamiec_karty value="1GB"/>
+		<System_operacyjny value="Windows 7 Home"/>
+		<Nagrywarka_DVD value="Brak danych"/>
+	</row>
+	<row>
+		<Marka value="Dell"/>
+		<Rozmiar value="Brak danych"/>
+		<Rozdzielczosc value="1280x800"/>
+		<Matryca value="matowa"/>
+		<Dotykowy value="nie"/>
+		<Procesor value="intel i7"/>
+		<Liczba_rdzeni value="4"/>
+		<Taktowanie value="2800"/>
+		<Ram value="8GB"/>
+		<Rozmiar_dysku value="240GB"/>
+		<Typ_dysku value="SSD"/>
+		<Karta_graficzna value="Brak danych"/>
+		<Pamiec_karty value="Brak danych"/>
+		<System_operacyjny value="Windows 7 Home"/>
+		<Nagrywarka_DVD value="brak"/>
+	</row>
+	<row>
+		<Marka value="Samsung"/>
+		<Rozmiar value="12&quot;"/>
+		<Rozdzielczosc value="1280x800"/>
+		<Matryca value="matowa"/>
+		<Dotykowy value="nie"/>
+		<Procesor value="intel i7"/>
+		<Liczba_rdzeni value="Brak danych"/>
+		<Taktowanie value="2120"/>
+		<Ram value="Brak danych"/>
+		<Rozmiar_dysku value="Brak danych"/>
+		<Typ_dysku value="Brak danych"/>
+		<Karta_graficzna value="intel HD Graphics 4000"/>
+		<Pamiec_karty value="1GB"/>
+		<System_operacyjny value="Brak danych"/>
+		<Nagrywarka_DVD value="brak"/>
+	</row>
+	<row>
+		<Marka value="Fujitsu"/>
+		<Rozmiar value="14&quot;"/>
+		<Rozdzielczosc value="1280x800"/>
+		<Matryca value="blyszczaca"/>
+		<Dotykowy value="tak"/>
+		<Procesor value="intel i7"/>
+		<Liczba_rdzeni value="8"/>
+		<Taktowanie value="2800"/>
+		<Ram value="24GB"/>
+		<Rozmiar_dysku value="500GB"/>
+		<Typ_dysku value="HDD"/>
+		<Karta_graficzna value="intel HD Graphics 520"/>
+		<Pamiec_karty value="Brak danych"/>
+		<System_operacyjny value="brak systemu"/>
+		<Nagrywarka_DVD value="Blu-Ray"/>
+	</row>
+	<row>
+		<Marka value="Fujitsu"/>
+		<Rozmiar value="14&quot;"/>
+		<Rozdzielczosc value="1920x1080"/>
+		<Matryca value="blyszczaca"/>
+		<Dotykowy value="tak"/>
+		<Procesor value="intel i7"/>
+		<Liczba_rdzeni value="8"/>
+		<Taktowanie value="1900"/>
+		<Ram value="24GB"/>
+		<Rozmiar_dysku value="500GB"/>
+		<Typ_dysku value="HDD"/>
+		<Karta_graficzna value="intel HD Graphics 520"/>
+		<Pamiec_karty value="1GB"/>
+		<System_operacyjny value="brak systemu"/>
+		<Nagrywarka_DVD value="Blu-Ray"/>
+	</row>
+	<row>
+		<Marka value="Fujitsu"/>
+		<Rozmiar value="15&quot;"/>
+		<Rozdzielczosc value="1920x1080"/>
+		<Matryca value="blyszczaca"/>
+		<Dotykowy value="tak"/>
+		<Procesor value="intel i7"/>
+		<Liczba_rdzeni value="8"/>
+		<Taktowanie value="2800"/>
+		<Ram value="24GB"/>
+		<Rozmiar_dysku value="500GB"/>
+		<Typ_dysku value="HDD"/>
+		<Karta_graficzna value="intel HD Graphics 520"/>
+		<Pamiec_karty value="Brak danych"/>
+		<System_operacyjny value="brak systemu"/>
+		<Nagrywarka_DVD value="Blu-Ray"/>
+	</row>
+	<row>
+		<Marka value="Fujitsu"/>
+		<Rozmiar value="15&quot;"/>
+		<Rozdzielczosc value="1920x1080"/>
+		<Matryca value="blyszczaca"/>
+		<Dotykowy value="tak"/>
+		<Procesor value="intel i7"/>
+		<Liczba_rdzeni value="8"/>
+		<Taktowanie value="2800"/>
+		<Ram value="24GB"/>
+		<Rozmiar_dysku value="500GB"/>
+		<Typ_dysku value="HDD"/>
+		<Karta_graficzna value="intel HD Graphics 520"/>
+		<Pamiec_karty value="Brak danych"/>
+		<System_operacyjny value="brak systemu"/>
+		<Nagrywarka_DVD value="Blu-Ray"/>
+	</row>
+	<row>
+		<Marka value="Samsung"/>
+		<Rozmiar value="15&quot;"/>
+		<Rozdzielczosc value="1920x1080"/>
+		<Matryca value="matowa"/>
+		<Dotykowy value="nie"/>
+		<Procesor value="intel i9"/>
+		<Liczba_rdzeni value="Brak danych"/>
+		<Taktowanie value="Brak danych"/>
+		<Ram value="Brak danych"/>
+		<Rozmiar_dysku value="Brak danych"/>
+		<Typ_dysku value="SSD"/>
+		<Karta_graficzna value="intel HD Graphics 4000"/>
+		<Pamiec_karty value="2GB"/>
+		<System_operacyjny value="Windows 10 Profesional"/>
+		<Nagrywarka_DVD value="Blu-Ray"/>
+	</row>
+	<row>
+		<Marka value="Samsung"/>
+		<Rozmiar value="13&quot;"/>
+		<Rozdzielczosc value="1366x768"/>
+		<Matryca value="matowa"/>
+		<Dotykowy value="nie"/>
+		<Procesor value="intel i7"/>
+		<Liczba_rdzeni value="4"/>
+		<Taktowanie value="2800"/>
+		<Ram value="12GB"/>
+		<Rozmiar_dysku value="24GB"/>
+		<Typ_dysku value="HDD"/>
+		<Karta_graficzna value="NVIDIA GeForce GTX 1050"/>
+		<Pamiec_karty value="1GB"/>
+		<System_operacyjny value="Windows 10 Home"/>
+		<Nagrywarka_DVD value="brak"/>
+	</row>
+	<row>
+		<Marka value="Huawei"/>
+		<Rozmiar value="13&quot;"/>
+		<Rozdzielczosc value="1366x768"/>
+		<Matryca value="matowa"/>
+		<Dotykowy value="nie"/>
+		<Procesor value="intel i7"/>
+		<Liczba_rdzeni value="4"/>
+		<Taktowanie value="3000"/>
+		<Ram value="Brak danych"/>
+		<Rozmiar_dysku value="24GB"/>
+		<Typ_dysku value="HDD"/>
+		<Karta_graficzna value="NVIDIA GeForce GTX 1050"/>
+		<Pamiec_karty value="Brak danych"/>
+		<System_operacyjny value="Windows 10 Home"/>
+		<Nagrywarka_DVD value="brak"/>
+	</row>
+	<row>
+		<Marka value="Samsung"/>
+		<Rozmiar value="13&quot;"/>
+		<Rozdzielczosc value="1366x768"/>
+		<Matryca value="Brak danych"/>
+		<Dotykowy value="nie"/>
+		<Procesor value="intel i5"/>
+		<Liczba_rdzeni value="Brak danych"/>
+		<Taktowanie value="2120"/>
+		<Ram value="Brak danych"/>
+		<Rozmiar_dysku value="Brak danych"/>
+		<Typ_dysku value="Brak danych"/>
+		<Karta_graficzna value="intel HD Graphics 4000"/>
+		<Pamiec_karty value="2GB"/>
+		<System_operacyjny value="Brak danych"/>
+		<Nagrywarka_DVD value="DVD"/>
+	</row>
+	<row>
+		<Marka value="Asus"/>
+		<Rozmiar value="14&quot;"/>
+		<Rozdzielczosc value="1600x900"/>
+		<Matryca value="matowa"/>
+		<Dotykowy value="nie"/>
+		<Procesor value="intel i5"/>
+		<Liczba_rdzeni value="4"/>
+		<Taktowanie value="Brak danych"/>
+		<Ram value="16GB"/>
+		<Rozmiar_dysku value="120GB"/>
+		<Typ_dysku value="SSD"/>
+		<Karta_graficzna value="intel HD Graphics 5000"/>
+		<Pamiec_karty value="1GB"/>
+		<System_operacyjny value="Brak danych"/>
+		<Nagrywarka_DVD value="brak"/>
+	</row>
+	<row>
+		<Marka value="Huawei"/>
+		<Rozmiar value="13&quot;"/>
+		<Rozdzielczosc value="Brak danych"/>
+		<Matryca value="matowa"/>
+		<Dotykowy value="nie"/>
+		<Procesor value="intel i7"/>
+		<Liczba_rdzeni value="4"/>
+		<Taktowanie value="2400"/>
+		<Ram value="12GB"/>
+		<Rozmiar_dysku value="24GB"/>
+		<Typ_dysku value="HDD"/>
+		<Karta_graficzna value="NVIDIA GeForce GTX 1050"/>
+		<Pamiec_karty value="Brak danych"/>
+		<System_operacyjny value="Brak danych"/>
+		<Nagrywarka_DVD value="brak"/>
+	</row>
+	<row>
+		<Marka value="Asus"/>
+		<Rozmiar value="14&quot;"/>
+		<Rozdzielczosc value="1600x900"/>
+		<Matryca value="matowa"/>
+		<Dotykowy value="nie"/>
+		<Procesor value="intel i5"/>
+		<Liczba_rdzeni value="4"/>
+		<Taktowanie value="2800"/>
+		<Ram value="Brak danych"/>
+		<Rozmiar_dysku value="120GB"/>
+		<Typ_dysku value="SSD"/>
+		<Karta_graficzna value="intel HD Graphics 5000"/>
+		<Pamiec_karty value="1GB"/>
+		<System_operacyjny value="Windows 10 Home"/>
+		<Nagrywarka_DVD value="Brak danych"/>
+	</row>
+	<row>
+		<Marka value="Samsung"/>
+		<Rozmiar value="14&quot;"/>
+		<Rozdzielczosc value="1600x900"/>
+		<Matryca value="matowa"/>
+		<Dotykowy value="nie"/>
+		<Procesor value="intel i5"/>
+		<Liczba_rdzeni value="Brak danych"/>
+		<Taktowanie value="Brak danych"/>
+		<Ram value="Brak danych"/>
+		<Rozmiar_dysku value="Brak danych"/>
+		<Typ_dysku value="SSD"/>
+		<Karta_graficzna value="intel HD Graphics 5000"/>
+		<Pamiec_karty value="1GB"/>
+		<System_operacyjny value="Windows 10 Home"/>
+		<Nagrywarka_DVD value="brak"/>
+	</row>
+	<row>
+		<Marka value="Huawei"/>
+		<Rozmiar value="14&quot;"/>
+		<Rozdzielczosc value="Brak danych"/>
+		<Matryca value="matowa"/>
+		<Dotykowy value="nie"/>
+		<Procesor value="intel i7"/>
+		<Liczba_rdzeni value="4"/>
+		<Taktowanie value="2200"/>
+		<Ram value="8GB"/>
+		<Rozmiar_dysku value="16GB"/>
+		<Typ_dysku value="HDD"/>
+		<Karta_graficzna value="NVIDIA GeForce GTX 1080"/>
+		<Pamiec_karty value="Brak danych"/>
+		<System_operacyjny value="Brak danych"/>
+		<Nagrywarka_DVD value="brak"/>
+	</row>
+	<row>
+		<Marka value="Asus"/>
+		<Rozmiar value="14&quot;"/>
+		<Rozdzielczosc value="1600x900"/>
+		<Matryca value="matowa"/>
+		<Dotykowy value="nie"/>
+		<Procesor value="intel i5"/>
+		<Liczba_rdzeni value="4"/>
+		<Taktowanie value="2800"/>
+		<Ram value="Brak danych"/>
+		<Rozmiar_dysku value="120GB"/>
+		<Typ_dysku value="SSD"/>
+		<Karta_graficzna value="intel HD Graphics 5000"/>
+		<Pamiec_karty value="1GB"/>
+		<System_operacyjny value="Windows 10 Profesional"/>
+		<Nagrywarka_DVD value="Brak danych"/>
+	</row>
+	<row>
+		<Marka value="MSI"/>
+		<Rozmiar value="17&quot;"/>
+		<Rozdzielczosc value="1600x900"/>
+		<Matryca value="blyszczaca"/>
+		<Dotykowy value="tak"/>
+		<Procesor value="intel i7"/>
+		<Liczba_rdzeni value="4"/>
+		<Taktowanie value="3300"/>
+		<Ram value="8GB"/>
+		<Rozmiar_dysku value="60GB"/>
+		<Typ_dysku value="SSD"/>
+		<Karta_graficzna value="AMD Radeon Pro 455"/>
+		<Pamiec_karty value="1GB"/>
+		<System_operacyjny value="Windows 8.1 Profesional"/>
+		<Nagrywarka_DVD value="DVD"/>
+	</row>
+	<row>
+		<Marka value="Sony"/>
+		<Rozmiar value="16&quot;"/>
+		<Rozdzielczosc value="Brak danych"/>
+		<Matryca value="blyszczaca"/>
+		<Dotykowy value="tak"/>
+		<Procesor value="intel i7"/>
+		<Liczba_rdzeni value="4"/>
+		<Taktowanie value="2800"/>
+		<Ram value="8GB"/>
+		<Rozmiar_dysku value="Brak danych"/>
+		<Typ_dysku value="Brak danych"/>
+		<Karta_graficzna value="AMD Radeon Pro 455"/>
+		<Pamiec_karty value="1GB"/>
+		<System_operacyjny value="Windows 7 Profesional"/>
+		<Nagrywarka_DVD value="DVD"/>
+	</row>
+	<row>
+		<Marka value="MSI"/>
+		<Rozmiar value="17&quot;"/>
+		<Rozdzielczosc value="1600x900"/>
+		<Matryca value="blyszczaca"/>
+		<Dotykowy value="tak"/>
+		<Procesor value="intel i7"/>
+		<Liczba_rdzeni value="4"/>
+		<Taktowanie value="9999"/>
+		<Ram value="8GB"/>
+		<Rozmiar_dysku value="60GB"/>
+		<Typ_dysku value="SSD"/>
+		<Karta_graficzna value="AMD Radeon Pro 455"/>
+		<Pamiec_karty value="1GB"/>
+		<System_operacyjny value="Windows 7 Profesional"/>
+		<Nagrywarka_DVD value="Brak danych"/>
+	</row>
+	<row>
+		<Marka value="MSI"/>
+		<Rozmiar value="17&quot;"/>
+		<Rozdzielczosc value="1600x900"/>
+		<Matryca value="blyszczaca"/>
+		<Dotykowy value="tak"/>
+		<Procesor value="intel i7"/>
+		<Liczba_rdzeni value="4"/>
+		<Taktowanie value="3300"/>
+		<Ram value="8GB"/>
+		<Rozmiar_dysku value="60GB"/>
+		<Typ_dysku value="SSD"/>
+		<Karta_graficzna value="AMD Radeon Pro 455"/>
+		<Pamiec_karty value="1GB"/>
+		<System_operacyjny value="Brak danych"/>
+		<Nagrywarka_DVD value="Brak danych"/>
+	</row>
+	<row>
+		<Marka value="Asus"/>
+		<Rozmiar value="Brak danych"/>
+		<Rozdzielczosc value="1600x900"/>
+		<Matryca value="blyszczaca"/>
+		<Dotykowy value="tak"/>
+		<Procesor value="intel i5"/>
+		<Liczba_rdzeni value="2"/>
+		<Taktowanie value="3200"/>
+		<Ram value="16GB"/>
+		<Rozmiar_dysku value="320GB"/>
+		<Typ_dysku value="HDD"/>
+		<Karta_graficzna value="Brak danych"/>
+		<Pamiec_karty value="Brak danych"/>
+		<System_operacyjny value="Windows 7 Home"/>
+		<Nagrywarka_DVD value="brak"/>
+	</row>
+	<row>
+		<Marka value="Sony"/>
+		<Rozmiar value="11&quot;"/>
+		<Rozdzielczosc value="Brak danych"/>
+		<Matryca value="blyszczaca"/>
+		<Dotykowy value="tak"/>
+		<Procesor value="intel i7"/>
+		<Liczba_rdzeni value="4"/>
+		<Taktowanie value="2800"/>
+		<Ram value="8GB"/>
+		<Rozmiar_dysku value="Brak danych"/>
+		<Typ_dysku value="Brak danych"/>
+		<Karta_graficzna value="AMD Radeon Pro 455"/>
+		<Pamiec_karty value="1GB"/>
+		<System_operacyjny value="Windows 7 Profesional"/>
+		<Nagrywarka_DVD value="brak"/>
+	</row>
+</table>
