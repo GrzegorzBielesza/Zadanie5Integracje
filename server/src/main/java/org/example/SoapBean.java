@@ -3,7 +3,6 @@ package org.example;
 import jakarta.jws.WebService;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 @WebService(endpointInterface = "org.example.SoapInterface")
@@ -21,7 +20,6 @@ public class SoapBean implements SoapInterface {
     @Override
     public Object[][] findByMatrix(String matrix) {
         ArrayList<ArrayList<String>> rows = computerFinder.findComputers();
-        System.out.println("qwe");
         return rows.stream().filter(row -> row.get(3).equals(matrix)).map(ArrayList::toArray).toArray(Object[][]::new);
     }
 
@@ -35,7 +33,7 @@ public class SoapBean implements SoapInterface {
     @Override
     public void writeToDatabase(String[] sqls) {
         try {
-            ComputerRepository.writeToDatabase(sqls);
+            ComputerRepository.overwriteDatabase(sqls);
         } catch (Exception e) {
             e.printStackTrace();
         }

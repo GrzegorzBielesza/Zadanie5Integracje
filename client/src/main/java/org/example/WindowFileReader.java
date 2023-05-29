@@ -1,6 +1,9 @@
 package org.example;
 
 import client.generated.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -17,6 +20,10 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import java.awt.*;
 import java.io.*;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,20 +48,39 @@ public class WindowFileReader extends JFrame {
     DefaultTableModel tableModel;
     JLabel label = new JLabel("Duplikaty: 0");
     JTable table;
-    JButton readButton = new JButton("wczytaj dane z pliku TXT");
-    JButton writeButton = new JButton("zapisz dane do pliku TXT");
+    JButton readButton = new JButton("wczytaj TXT");
+    JButton writeButton = new JButton("zapisz TXT");
     JButton validateButton = new JButton("waliduj dane");
 
-    JButton readXMLButton = new JButton("wczytaj dane z pliku XML");
+    JButton readXMLButton = new JButton("wczytaj XML");
 
-    JButton writeXMLButton = new JButton("zapisz dane do pliku XML");
+    JButton writeXMLButton = new JButton("zapisz XML");
 
     JButton readFromDatabaseByProducerButton = new JButton("FiltrujPoProducencie");
     JButton readFromDatabaseByMatrixButton = new JButton("FiltrujPoMatrycy");
 
     JButton readFromDatabaseByAspectRatioButton = new JButton("FiltrujPoProporcji");
 
-    JButton writeToDatabaseButton = new JButton("zapisz dane do bazy danych");
+    JButton overrideDatabaseButton = new JButton("Nadpisz bazę danych");
+    JButton clearDatabaseButton = new JButton("Wyczyść bazę danych");
+
+    JButton writeToDatabaseButton = new JButton("Zapisz do bazy danych");
+    JTextField producerTextField = new JTextField();
+    JTextField matrixTextField = new JTextField();
+    JTextField aspectRatioTextField = new JTextField();
+    JTextField sizeTextField = new JTextField();
+    JTextField touchableTextField = new JTextField();
+    JTextField processorTextField = new JTextField();
+    JTextField numberOfThreadsTextField = new JTextField();
+    JTextField frequencyTextField = new JTextField();
+    JTextField ramTextField = new JTextField();
+    JTextField diskSizeTextField = new JTextField();
+    JTextField diskTypeTextField = new JTextField();
+    JTextField graphicsCardTextField = new JTextField();
+    JTextField graphicsCardMemoryTextField = new JTextField();
+    JTextField operationSystemTextField = new JTextField();
+    JTextField dvdTextField = new JTextField();
+
 
     int[][] invalidCells;
 
@@ -75,196 +101,74 @@ public class WindowFileReader extends JFrame {
     JComboBox<String> proportionComboBox;
 
     public WindowFileReader() {
-        soapBeanService = new SoapBeanService();
-        server = soapBeanService.getSoapBeanPort();
+//        soapBeanService = new SoapBeanService();
+//        server = soapBeanService.getSoapBeanPort();
+        soapBeanService = null;
+        server = null;
         showWindow();
     }
 
-    private void readFile() {
-        editMode = true;
-        newRowlist.clear();
-        String line = "";
-
+    private void readFromDbByProducerRest() {
         try {
-            reader = new BufferedReader(new FileReader("src/main/resources/example.csv"));
-            while ((line = reader.readLine()) != null) {
-                newRowlist.add(new ArrayList<>(Arrays.asList(line.split(";", -1)).subList(0, headers.length)));
-            }
-        } catch ( Exception e) {
-            e.printStackTrace();
-        } finally {
-            try { reader.close(); }
-            catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
-    private void readXmlFile() {
-        editMode = true;
-        newRowlist.clear();
-
-        File xmlFile = new File("katalog2.xml");
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        try {
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(xmlFile);
-            NodeList nodeList = doc.getElementsByTagName("row");
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                Node node = nodeList.item(i);
-                if (node.getNodeType() == Node.ELEMENT_NODE) {
-                    Element element = (Element) node;
-                    String[] rowData = new String[headers.length];
-                    for (int j = 0; j < headers.length; j++) {
-                        Element element2 = (Element) element.getElementsByTagName(headers[j]).item(0);
-                        rowData[j] = element2.getAttribute("value");
-                    }
-                    newRowlist.add(new ArrayList<>(Arrays.asList(rowData)));
-                }
-            }
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(new URI("http://localhost:8080/api/computers/findByProducer/" + this.producerComboBox.getSelectedItem().toString())).build();
+            readFromDatabaseRest(request);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    private void readFromDbByProducer() {
-        AnyTypeArrayArray encapsulatedData = server.findByProducer(this.producerComboBox.getSelectedItem().toString());
-        readFromDatabase(encapsulatedData);
+
+    private void readFromDbByMatrixRest() {
+        try {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(new URI("http://localhost:8080/api/computers/findByMatrix/" + this.matrixComboBox.getSelectedItem().toString())).build();
+            readFromDatabaseRest(request);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-    private void readFromDbByMatrix() {
-        AnyTypeArrayArray encapsulatedData = server.findByMatrix(this.matrixComboBox.getSelectedItem().toString());
-        readFromDatabase(encapsulatedData);
+
+    private void readFromDbByAspectRatioRest() {
+        try {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(new URI("http://localhost:8080/api/computers/findByAspectRatio/" + this.proportionComboBox.getSelectedItem().toString())).build();
+            readFromDatabaseRest(request);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-    private void readFromDbByAspectRatio() {
-        AnyTypeArrayArray encapsulatedData = server.findByAspectRatio(this.proportionComboBox.getSelectedItem().toString());
-        readFromDatabase(encapsulatedData);
-    }
-    private void readFromDatabase(AnyTypeArrayArray encapsulatedData) {
+
+    private void readFromDatabaseRest(HttpRequest request) {
         editMode = true;
         newRowlist.clear();
-            List<AnyTypeArray> data = encapsulatedData.getItem();
-            data.forEach((row) -> {
-                String[] rowData = new String[headers.length];
-                for (int j = 0; j < headers.length; j++) {
-                    rowData[j] = row.getItem().get(j).toString();
-                }
-                newRowlist.add(new ArrayList<>(Arrays.asList(rowData)));
-            });
+        try{
+            HttpClient client = HttpClient.newHttpClient();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            String body = response.body();
+            newRowlist = parseStringBodyToList(body);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    private ArrayList<ArrayList<String>> parseStringBodyToList(String body) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        ArrayList<ArrayList<String>> result = objectMapper.readValue(body, new TypeReference<>() {
+        });
+        return result;
     }
 
     private void updateTableData() {
         editedRows.clear();
-        invalidCells=null;
-        duplicates.clear();
-        others.clear();
-        tableModel.setNumRows(newRowlist.size()+rowlist.size());
+        tableModel.setNumRows(newRowlist.size());
         for (int row = 0; row < newRowlist.size(); row++){
-            if(!rowlist.isEmpty() && isItDuplicate(newRowlist.get(row))){
-                duplicates.add(row + rowlist.size());
-            } else if (!rowlist.isEmpty()) {
-                others.add(row + rowlist.size());
-            }
             for (int col = 0; col < headers.length; col++) {
-                tableModel.setValueAt(newRowlist.get(row).get(col), row + rowlist.size(), col);
+                tableModel.setValueAt(newRowlist.get(row).get(col), row, col);
             }
         }
-        for (int col = 0; col < headers.length; col++) {
-            table.getColumnModel().getColumn(col).setCellRenderer(new CustomRenderer());
-        }
 
-        allDuplicates.addAll(duplicates);
         rowlist.addAll(newRowlist);
-        label.setText("Duplikaty: " + duplicates.size());
         editMode = false;
-
-    }
-
-    private boolean isItDuplicate(ArrayList<String> newRow) {
-
-        return rowlist.stream().anyMatch(row -> {
-            int duplicateCounter = 0;
-            for(int i = 0; i < row.size(); i++) {
-                if(row.get(i).equals(newRow.get(i))){
-                    duplicateCounter++;
-                }
-            }
-            if(duplicateCounter == row.size()){
-                return true;
-            }
-            else{
-                return false;
-            }
-        });
-
-//        return rowlist.stream().anyMatch(row -> row.size() == newRow.size() && IntStream.range(0, row.size()).allMatch(i -> row.get(i).equals(newRow.get(i))));
-//        return rowlist.stream().anyMatch(row -> row.equals(newRow));
-
-    }
-
-    private void exportDataToFile() {
-        PrintWriter writer = null;
-        try {
-            writer = new PrintWriter("src/main/resources/export.txt");
-            for (int row = 0; row < tableModel.getRowCount(); row++) {
-                if(!allDuplicates.contains(row)) {
-                    for (int col = 0; col < tableModel.getColumnCount(); col++) {
-                        writer.print(tableModel.getValueAt(row, col));
-                        writer.print(";");
-                    }
-                    writer.println();
-                }
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            if (writer != null) {
-                writer.close();
-            }
-        }
-    }
-
-    private void exportDataToXmlFile() throws IOException, XMLStreamException {
-
-        XMLOutputFactory xmlOutputFactory = XMLOutputFactory.newInstance();
-        XMLStreamWriter xmlWriter = xmlOutputFactory.createXMLStreamWriter(new FileWriter("katalog3.xml"));
-
-        // Rozpoczynamy dokument XML
-        xmlWriter.writeStartDocument();
-        xmlWriter.writeCharacters("\n");
-        xmlWriter.writeStartElement("table");
-        xmlWriter.writeCharacters("\n");
-
-        // Pobieramy liczbę kolumn i wierszy
-        int columnCount = table.getColumnCount();
-        int rowCount = table.getRowCount();
-
-        // Pobieramy wartości z kolumn i tworzymy elementy XML z atrybutami
-        for (int i = 0; i < rowCount; i++) {
-            if (!allDuplicates.contains(i)) {
-                xmlWriter.writeCharacters("\t");
-                xmlWriter.writeStartElement("row");
-                xmlWriter.writeCharacters("\n");
-                for (int j = 0; j < columnCount; j++) {
-                    String columnValue = table.getValueAt(i, j).toString();
-                    String columnName = headers[j];
-                    xmlWriter.writeCharacters("\t\t");
-                    xmlWriter.writeStartElement(columnName);
-                    xmlWriter.writeAttribute("value", columnValue);
-                    xmlWriter.writeEndElement();
-                    xmlWriter.writeCharacters("\n");
-                }
-                xmlWriter.writeCharacters("\t");
-                xmlWriter.writeEndElement();
-                xmlWriter.writeCharacters("\n");
-            }
-        }
-
-        // Zamykamy dokument XML i zapisujemy plik
-        xmlWriter.writeEndElement();
-        xmlWriter.writeCharacters("\n");
-        xmlWriter.writeEndDocument();
-        xmlWriter.flush();
-        xmlWriter.close();
     }
 
     public void validateTable() {
@@ -280,19 +184,58 @@ public class WindowFileReader extends JFrame {
     }
 
 
+    private void saveNewComputerToDatabase() {
+            String sql = "INSERT INTO computers (id, Marka, Rozmiar, Rozdzielczosc, Matryca, Dotykowy, Procesor, Liczba_rdzeni, Taktowanie, Ram, Rozmiar_dysku, Typ_dysku, Karta_graficzna, Pamiec_karty, System_operacyjny, Nagrywarka_DVD) VALUES " +
+                    "("+0+", '"+producerTextField.getText()+"', '"+sizeTextField.getText()+"', '"+aspectRatioTextField.getText()+"', '"+matrixTextField.getText()+"', '"+touchableTextField.getText()+"', '"+processorTextField.getText()+"', '"+numberOfThreadsTextField.getText()+"', '"+frequencyTextField.getText()+"', '"+ramTextField.getText()+"', '"+diskSizeTextField.getText()+"', '"+diskTypeTextField.getText()+"', '"+graphicsCardTextField.getText()+"', '"+graphicsCardMemoryTextField.getText()+"', '"+operationSystemTextField.getText()+"', '"+dvdTextField.getText()+"');";
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            String requestBodyJson = objectMapper.writeValueAsString(sql);
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(new URI("http://localhost:8080/api/computers"))
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(requestBodyJson))
+                    .build();
+            HttpClient client = HttpClient.newHttpClient();
+            client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-    private void writeToDatabase() {
-            ArrayList<String> sqls = new ArrayList<>();
-            StringArray array = new StringArray();
-            for (int i = 0; i< rowlist.size(); i++){
-                if(!allDuplicates.contains(i)){
+    private void clearDatabase() {
+        try {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(new URI("http://localhost:8080/api/computers"))
+                    .header("Content-Type", "application/json")
+                    .DELETE()
+                    .build();
+            HttpClient client = HttpClient.newHttpClient();
+            client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void overrideDatabaseRest() {
+        ArrayList<String> sqls = new ArrayList<>();
+        for (int i = 0; i< newRowlist.size(); i++){
                 String sql2 = "INSERT INTO computers (id, Marka, Rozmiar, Rozdzielczosc, Matryca, Dotykowy, Procesor, Liczba_rdzeni, Taktowanie, Ram, Rozmiar_dysku, Typ_dysku, Karta_graficzna, Pamiec_karty, System_operacyjny, Nagrywarka_DVD) VALUES \n" +
                         "("+(i+1)+", '"+tableModel.getValueAt(i, 0)+"', '"+tableModel.getValueAt(i, 1)+"', '"+tableModel.getValueAt(i, 2)+"', '"+tableModel.getValueAt(i, 3)+"', '"+tableModel.getValueAt(i, 4)+"', '"+tableModel.getValueAt(i, 5)+"', '"+tableModel.getValueAt(i, 6)+"', '"+tableModel.getValueAt(i, 7)+"', '"+tableModel.getValueAt(i, 8)+"', '"+tableModel.getValueAt(i, 9)+"', '"+tableModel.getValueAt(i, 10)+"', '"+tableModel.getValueAt(i, 11)+"', '"+tableModel.getValueAt(i, 12)+"', '"+tableModel.getValueAt(i, 13)+"', '"+tableModel.getValueAt(i, 14)+"');";
                 sqls.add(sql2);
-                array.getItem().add(sql2);
-                }
-            }
-            server.writeToDatabase(array);
+        }
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            String requestBodyJson = objectMapper.writeValueAsString(sqls);
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(new URI("http://localhost:8080/api/computers"))
+                    .header("Content-Type", "application/json")
+                    .PUT(HttpRequest.BodyPublishers.ofString(requestBodyJson))
+                    .build();
+            HttpClient client = HttpClient.newHttpClient();
+            client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private boolean validateCell(String cell, String validator) {
@@ -305,34 +248,68 @@ public class WindowFileReader extends JFrame {
         tableModel = new DefaultTableModel(new String[0][30], headers);
         BorderLayout borderLayout = new BorderLayout();
         setLayout(borderLayout);
-        add(label, BorderLayout.NORTH);
         this.producerComboBox = new JComboBox(this.producer);
         this.matrixComboBox = new JComboBox(this.matrix);
         this.proportionComboBox = new JComboBox(this.proportion);
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        JPanel buttonPanel2 = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
         buttonPanel.add(producerComboBox);
         buttonPanel.add(matrixComboBox);
         buttonPanel.add(proportionComboBox);
-        buttonPanel.add(readButton);
-        buttonPanel.add(writeButton);
-        buttonPanel.add(validateButton);
-        buttonPanel.add(readXMLButton);
-        buttonPanel.add(writeXMLButton);
         buttonPanel.add(readFromDatabaseByProducerButton);
         buttonPanel.add(readFromDatabaseByMatrixButton);
         buttonPanel.add(readFromDatabaseByAspectRatioButton);
-        buttonPanel.add(writeToDatabaseButton);
-        add(buttonPanel, BorderLayout.SOUTH);
+        buttonPanel.add(clearDatabaseButton);
+        buttonPanel.add(overrideDatabaseButton);
+
+        buttonPanel2.add(writeToDatabaseButton);
+
+        buttonPanel2.add(producerTextField);
+        buttonPanel2.add(sizeTextField);
+        buttonPanel2.add(aspectRatioTextField);
+        buttonPanel2.add(matrixTextField);
+        buttonPanel2.add(touchableTextField);
+        buttonPanel2.add(processorTextField);
+        buttonPanel2.add(numberOfThreadsTextField);
+        buttonPanel2.add(frequencyTextField);
+        buttonPanel2.add(ramTextField);
+        buttonPanel2.add(diskSizeTextField);
+        buttonPanel2.add(diskTypeTextField);
+        buttonPanel2.add(graphicsCardTextField);
+        buttonPanel2.add(graphicsCardMemoryTextField);
+        buttonPanel2.add(operationSystemTextField);
+        buttonPanel2.add(dvdTextField);
+
+        producerTextField.setPreferredSize(new Dimension(50, 30));
+        aspectRatioTextField.setPreferredSize(new Dimension(50, 30));
+        sizeTextField.setPreferredSize(new Dimension(50, 30));
+        matrixTextField.setPreferredSize(new Dimension(50, 30));
+        touchableTextField.setPreferredSize(new Dimension(50, 30));
+        processorTextField.setPreferredSize(new Dimension(50, 30));
+        numberOfThreadsTextField.setPreferredSize(new Dimension(50, 30));
+        frequencyTextField.setPreferredSize(new Dimension(50, 30));
+        ramTextField.setPreferredSize(new Dimension(50, 30));
+        diskSizeTextField.setPreferredSize(new Dimension(50, 30));
+        diskTypeTextField.setPreferredSize(new Dimension(50, 30));
+        graphicsCardTextField.setPreferredSize(new Dimension(50, 30));
+        graphicsCardMemoryTextField.setPreferredSize(new Dimension(50, 30));
+        operationSystemTextField.setPreferredSize(new Dimension(50, 30));
+        dvdTextField.setPreferredSize(new Dimension(50, 30));
+
+
+
+        add(buttonPanel, BorderLayout.NORTH);
+        add(buttonPanel2, BorderLayout.SOUTH);
         table = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(table);
         add(scrollPane);
-        setSize(1600, 900);
+        setSize(1920, 768);
         setVisible(true);
         table.getModel().addTableModelListener(e -> {
             int row = e.getFirstRow();
             int column = e.getColumn();
             if(!editMode)
-            if (e.getType() == TableModelEvent.UPDATE && !editMode && !tableModel.getValueAt(row, column).equals(rowlist.get(row).get(column))) {
+            if (e.getType() == TableModelEvent.UPDATE && !editMode && !tableModel.getValueAt(row, column).equals(newRowlist.get(row).get(column))) {
                 editedRows.add(row);
                 for (int col = 0; col < headers.length; col++) {
                     table.getColumnModel().getColumn(col).setCellRenderer(new CustomRenderer());
@@ -340,47 +317,37 @@ public class WindowFileReader extends JFrame {
             }
         });
 
-        readButton.addActionListener(e -> {
-            readFile();
-            updateTableData();
-        });
-
-        writeButton.addActionListener(e -> {
-            exportDataToFile();
-        });
-
-        validateButton.addActionListener(e -> {
-            validateTable();
-        });
-
-        readXMLButton.addActionListener(e -> {
-            readXmlFile();
-            updateTableData();
-        });
-
-        writeXMLButton.addActionListener(e -> {
-            try {
-                exportDataToXmlFile();
-            } catch (IOException | XMLStreamException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-
         readFromDatabaseByProducerButton.addActionListener(e -> {
-            readFromDbByProducer();
+//            readFromDbByProducerSoap();
+            readFromDbByProducerRest();
             updateTableData();
         });
         readFromDatabaseByMatrixButton.addActionListener(e -> {
-            readFromDbByMatrix();
+//            readFromDbByMatrixSoap();
+            readFromDbByMatrixRest();
             updateTableData();
         });
         readFromDatabaseByAspectRatioButton.addActionListener(e -> {
-            readFromDbByAspectRatio();
+//            readFromDbByAspectRatioSoap();
+            readFromDbByAspectRatioRest();
             updateTableData();
         });
 
         writeToDatabaseButton.addActionListener(e -> {
-            writeToDatabase();
+//            writeToDatabaseSoap();
+            saveNewComputerToDatabase();
+        });
+
+        overrideDatabaseButton.addActionListener(e -> {
+//            writeToDatabaseSoap();
+            overrideDatabaseRest();
+        });
+
+        clearDatabaseButton.addActionListener(e -> {
+//            writeToDatabaseSoap();
+            clearDatabase();
+            readFromDbByProducerRest();
+            updateTableData();
         });
     }
 
@@ -394,25 +361,11 @@ public class WindowFileReader extends JFrame {
         {
             Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-            if(!duplicates.isEmpty() && duplicates.contains(row)){
-                cellComponent.setBackground(Color.GREEN);
-            }
-            else if(!others.isEmpty() && others.contains(row)){
-                cellComponent.setBackground(Color.GRAY);
-            }
-            else if((row < rowlist.size())){
-                cellComponent.setBackground(Color.WHITE);
-            }
-
             if(editedRows.contains(row)){
                 cellComponent.setBackground(Color.YELLOW);
             }
-
-
-            if(invalidCells!=null && invalidCells.length>0 && invalidCells[row][column] == 1){
-                cellComponent.setBackground(Color.RED);}
             else{
-//                cellComponent.setBackground(Color.WHITE);
+                cellComponent.setBackground(Color.WHITE);
             }
 
             return cellComponent;
