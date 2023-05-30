@@ -244,6 +244,39 @@ public class WindowFileReader extends JFrame {
         return matcher.find();
     }
 
+     void setTextPlaceholders(){
+        producerTextField.setText("<"+headers[0]+">");
+        new Placeholder(producerTextField, "<"+headers[0]+">");
+         sizeTextField.setText("<"+headers[1]+">");
+        new Placeholder(sizeTextField, "<"+headers[1]+">");
+         aspectRatioTextField.setText("<"+headers[2]+">");
+        new Placeholder(aspectRatioTextField, "<"+headers[2]+">");
+         matrixTextField.setText("<"+headers[3]+">");
+        new Placeholder(matrixTextField, "<"+headers[3]+">");
+         touchableTextField.setText("<"+headers[4]+">");
+        new Placeholder(touchableTextField, "<"+headers[4]+">");
+         processorTextField.setText("<"+headers[5]+">");
+        new Placeholder(processorTextField, "<"+headers[5]+">");
+         numberOfThreadsTextField.setText("<"+headers[6]+">");
+        new Placeholder(numberOfThreadsTextField, "<"+headers[6]+">");
+         frequencyTextField.setText("<"+headers[7]+">");
+        new Placeholder(frequencyTextField, "<"+headers[7]+">");
+         ramTextField.setText("<"+headers[8]+">");
+        new Placeholder(ramTextField, "<"+headers[8]+">");
+         diskSizeTextField.setText("<"+headers[9]+">");
+        new Placeholder(diskSizeTextField, "<"+headers[9]+">");
+         diskTypeTextField.setText("<"+headers[10]+">");
+        new Placeholder(diskTypeTextField, "<"+headers[10]+">");
+         graphicsCardTextField.setText("<"+headers[11]+">");
+        new Placeholder(graphicsCardTextField, "<"+headers[11]+">");
+         graphicsCardMemoryTextField.setText("<"+headers[12]+">");
+        new Placeholder(graphicsCardMemoryTextField, "<"+headers[12]+">");
+         operationSystemTextField.setText("<"+headers[13]+">");
+        new Placeholder(operationSystemTextField, "<"+headers[13]+">");
+         dvdTextField.setText("<"+headers[14]+">");
+        new Placeholder(dvdTextField, "<"+headers[14]+">");
+    }
+
     private void showWindow() {
         tableModel = new DefaultTableModel(new String[0][30], headers);
         BorderLayout borderLayout = new BorderLayout();
@@ -279,24 +312,25 @@ public class WindowFileReader extends JFrame {
         buttonPanel2.add(graphicsCardMemoryTextField);
         buttonPanel2.add(operationSystemTextField);
         buttonPanel2.add(dvdTextField);
-
-        producerTextField.setPreferredSize(new Dimension(50, 30));
-        aspectRatioTextField.setPreferredSize(new Dimension(50, 30));
-        sizeTextField.setPreferredSize(new Dimension(50, 30));
-        matrixTextField.setPreferredSize(new Dimension(50, 30));
-        touchableTextField.setPreferredSize(new Dimension(50, 30));
-        processorTextField.setPreferredSize(new Dimension(50, 30));
-        numberOfThreadsTextField.setPreferredSize(new Dimension(50, 30));
-        frequencyTextField.setPreferredSize(new Dimension(50, 30));
+        
+        
+        producerTextField.setPreferredSize(new Dimension(60, 30));
+        sizeTextField.setPreferredSize(new Dimension(70, 30));
+        aspectRatioTextField.setPreferredSize(new Dimension(100, 30));
+        matrixTextField.setPreferredSize(new Dimension(60, 30));
+        touchableTextField.setPreferredSize(new Dimension(70, 30));
+        processorTextField.setPreferredSize(new Dimension(70, 30));
+        numberOfThreadsTextField.setPreferredSize(new Dimension(100, 30));
+        frequencyTextField.setPreferredSize(new Dimension(90, 30));
         ramTextField.setPreferredSize(new Dimension(50, 30));
-        diskSizeTextField.setPreferredSize(new Dimension(50, 30));
-        diskTypeTextField.setPreferredSize(new Dimension(50, 30));
-        graphicsCardTextField.setPreferredSize(new Dimension(50, 30));
-        graphicsCardMemoryTextField.setPreferredSize(new Dimension(50, 30));
-        operationSystemTextField.setPreferredSize(new Dimension(50, 30));
-        dvdTextField.setPreferredSize(new Dimension(50, 30));
+        diskSizeTextField.setPreferredSize(new Dimension(110, 30));
+        diskTypeTextField.setPreferredSize(new Dimension(80, 30));
+        graphicsCardTextField.setPreferredSize(new Dimension(100, 30));
+        graphicsCardMemoryTextField.setPreferredSize(new Dimension(110, 30));
+        operationSystemTextField.setPreferredSize(new Dimension(130, 30));
+        dvdTextField.setPreferredSize(new Dimension(120, 30));
 
-
+        setTextPlaceholders();
 
         add(buttonPanel, BorderLayout.NORTH);
         add(buttonPanel2, BorderLayout.SOUTH);
